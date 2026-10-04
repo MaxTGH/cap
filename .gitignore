@@ -1,0 +1,13 @@
+# This folder holds several projects; only the ones listed below are part of this repo.
+# Everything else (email-classifier, which has its own repo, Claude settings, new
+# experiments) stays out unless it's added here on purpose.
+/*
+!/.gitignore
+!/README.md
+!/docs/
+!/cap/
+!/balance-check/
+!/research/
+
+# Per-project Claude Code settings stay local.
+**/.claude/settings.json

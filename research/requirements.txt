@@ -1,0 +1,9 @@
+torch
+transformers
+adapters
+requests
+numpy
+pandas
+tqdm
+anthropic
+ipykernel

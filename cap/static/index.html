@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="cap-token" content="{{TOKEN}}">
+<meta name="cap-name" content="{{NAME}}">
+<meta name="cap-mode" content="{{MODE}}">
+<title>C.A.P.</title>
+<link rel="icon" href="/static/icon.svg">
+<link rel="stylesheet" href="/static/style.css">
+<script src="/static/app.js" defer></script>
+</head>
+<body>
+
+<svg width="0" height="0" class="defs" aria-hidden="true">
+  <symbol id="reactor" viewBox="0 0 200 200">
+    <circle class="r-glow" cx="100" cy="100" r="34"/>
+    <g class="r-spin r-slow"><circle cx="100" cy="100" r="92" class="r-ring r-dash-a"/></g>
+    <g class="r-spin r-rev"><circle cx="100" cy="100" r="78" class="r-ring r-dash-b"/></g>
+    <g class="r-spin r-fast"><circle cx="100" cy="100" r="64" class="r-ring r-dash-c"/></g>
+    <circle cx="100" cy="100" r="50" class="r-ring r-thin"/>
+    <g class="r-spin r-rev r-slow"><circle cx="100" cy="100" r="42" class="r-ring r-dash-d"/></g>
+    <circle cx="100" cy="100" r="24" class="r-core"/>
+  </symbol>
+</svg>
+
+<div id="boot" class="boot" role="dialog" aria-label="Starting CAP">
+  <svg class="reactor reactor-xl"><use href="#reactor"/></svg>
+  <ol id="boot-lines" class="boot-lines"></ol>
+  <h1 id="boot-greeting" class="boot-greeting"></h1>
+  <p class="boot-skip">Click anywhere to skip</p>
+</div>
+
+<div class="backdrop" aria-hidden="true"></div>
+
+<header class="topbar">
+  <div class="brand">
+    <svg class="reactor reactor-sm"><use href="#reactor"/></svg>
+    <div>
+      <div class="brand-name">C.A.P.</div>
+      <div class="brand-sub">Personal operations console</div>
+    </div>
+  </div>
+  <div class="hello">
+    <div id="greeting" class="hello-main"></div>
+    <div id="subgreeting" class="hello-sub"></div>
+  </div>
+  <div class="status">
+    <span id="demo-badge" class="badge badge-amber" hidden>Demo data</span>
+    <div class="wx-wrap">
+      <button id="wx-button" class="hdr-wx" type="button" aria-expanded="false" title="Click to set your city for weather">
+        <span id="wx-icon" class="wx-icon-slot" aria-hidden="true"></span>
+        <span class="wx-lines">
+          <span class="wx-top"><span id="wx-temp">Weather</span> <span id="wx-summary"></span></span>
+          <span id="wx-detail">Click to set your city</span>
+        </span>
+      </button>
+      <form id="weather-form" class="wx-pop" hidden autocomplete="off">
+        <label for="weather-input">City for weather</label>
+        <div class="wx-pop-row">
+          <input id="weather-input" type="text" maxlength="100" spellcheck="false" placeholder="e.g. Boston, MA">
+          <button class="btn" type="submit" data-run>Set</button>
+        </div>
+        <p>Only the city and its coordinates are sent to Open-Meteo (free, no account).</p>
+      </form>
+    </div>
+    <div class="sys"><span id="sys-dot" class="dot"></span><span id="sys-text">Online</span></div>
+    <button id="voice" class="icon-btn" type="button" aria-pressed="true" title="Voice on">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-speaker" d="M4 9h4l5-4v14l-5-4H4z"/><path class="i-waves" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/><path class="i-mute" d="M16 9l5 6M21 9l-5 6"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="grid">
+  <section class="panel" data-task="balance">
+    <header class="panel-head">
+      <span class="panel-no">01</span><h2>Financial integrity</h2><span class="state" data-state>Standby</span>
+    </header>
+    <div class="panel-body" data-body aria-live="polite">
+      <p class="hint">How much checking would be left at each bank after paying off its cards. Under $100 left warns; $0 or less fails.</p>
+    </div>
+    <div class="ticker" data-ticker></div>
+    <footer class="panel-foot">
+      <button class="btn" type="button" data-run>Run balance check</button>
+      <span class="meta" data-meta></span>
+    </footer>
+  </section>
+
+  <section class="panel" data-task="subscriptions">
+    <header class="panel-head">
+      <span class="panel-no">02</span><h2>Subscriptions</h2><span class="state" data-state>Standby</span>
+    </header>
+    <div class="panel-body" data-body aria-live="polite">
+      <p class="hint">Finds charges that repeat on a schedule across every linked account.</p>
+    </div>
+    <div class="ticker" data-ticker></div>
+    <footer class="panel-foot">
+      <button class="btn" type="button" data-run>Scan subscriptions</button>
+      <span class="meta" data-meta></span>
+    </footer>
+  </section>
+
+  <section class="panel" data-task="email">
+    <header class="panel-head">
+      <span class="panel-no">03</span><h2>Mail triage</h2><span class="state" data-state>Standby</span>
+    </header>
+    <div class="panel-body" data-body aria-live="polite">
+      <p class="hint">Sorts the last 7 days of your Primary inbox into Classifier labels with your trained model.</p>
+    </div>
+    <div class="ticker" data-ticker></div>
+    <footer class="panel-foot">
+      <button class="btn" type="button" data-run>Classify emails</button>
+      <label class="check"><input type="checkbox" id="email-preview"> Preview only</label>
+      <span class="meta" data-meta></span>
+    </footer>
+  </section>
+
+  <section class="panel panel-wide" data-task="research">
+    <header class="panel-head">
+      <span class="panel-no">04</span><h2>Research</h2><span class="state" data-state>Standby</span>
+    </header>
+    <form id="research-form" class="ask" autocomplete="off">
+      <span class="ask-caret" aria-hidden="true">&gt;</span>
+      <input id="research-input" type="text" maxlength="1000" spellcheck="false"
+             placeholder="Describe a problem, e.g. predict which tenants will pay rent late" aria-label="Research prompt">
+      <button class="btn" type="submit" data-run>Research</button>
+    </form>
+    <div class="panel-body panel-scroll" data-body aria-live="polite">
+      <p class="hint">Searches recent academic papers on OpenAlex and ranks them by meaning with SPECTER2. Your prompt is sent to OpenAlex (and to Claude, if an Anthropic API key is set).</p>
+    </div>
+    <div class="ticker" data-ticker></div>
+    <footer class="panel-foot"><span class="meta" data-meta></span></footer>
+  </section>
+
+  <section class="panel panel-log">
+    <header class="panel-head">
+      <span class="panel-no">05</span><h2>Activity</h2><span class="state">Live</span>
+    </header>
+    <ol id="log" class="log" aria-live="polite"></ol>
+  </section>
+</main>
+
+</body>
+</html>
