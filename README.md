@@ -20,7 +20,7 @@ On a Mac with Chrome it opens as its own app window; anywhere else it opens in y
 
 | Module | What it does | Built with |
 |---|---|---|
-| [Financial integrity](balance-check/) | For each linked bank, shows how much checking would be left after paying off that bank's credit cards. **PASS** at $100+, **WARN** under $100, **FAIL** at $0 or below | Plaid API, macOS Keychain |
+| [Credit-card balance](balance-check/) | For each linked bank, shows how much checking would be left after paying off that bank's credit cards. **PASS** at $100+, **WARN** under $100, **FAIL** at $0 or below | Plaid API, macOS Keychain |
 | [Subscriptions](balance-check/subscriptions.py) | Finds recurring charges in ~90 days of transactions, estimates the monthly total, and flags subscriptions that missed a charge (maybe cancelled) | Plaid Transactions, custom detection algorithm |
 | Mail triage ([own repo](https://github.com/MaxTGH/email_classifier)) | Labels Gmail inbox with a fine-tuned DistilBERT model | PyTorch, Hugging Face Transformers, Gmail API |
 | [Research](research/) | Describe an ML problem in plain English and get recent papers ranked by meaning | OpenAlex, SPECTER2 embeddings, optional Claude query expansion |
