@@ -1,6 +1,6 @@
 # C.A.P.
 
-C.A.P. is a desktop dashboard that runs personal tools from one window: a bank-balance guardrail, a subscription detector, an ML email classifier and a research-paper search engine, plus live weather and a voice greeting. Everything runs on the local computer.
+C.A.P. is a desktop dashboard that runs personal tools from one window: a credit card and bank balance monitor, a subscription detector, an ML email classifier and a research-paper search engine. Everything runs on the local computer.
 
 ![C.A.P. dashboard running on demo data](docs/dashboard.png)
 
