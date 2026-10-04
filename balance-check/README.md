@@ -9,7 +9,6 @@ that bank's credit cards. Uses Plaid's read-only API.
 - **Plaid keys and bank access tokens** are stored in the macOS Keychain (service `balance-check`), never in files.
 - **Access is read-only.** Plaid tokens can't move money. Revoke one anytime from the Plaid dashboard or your bank's "connected apps" settings.
 - **Output** of `check.py` is per-bank totals only, with no account numbers or transactions. `subscriptions.py` prints merchant names and amounts of recurring charges (still no account numbers), to the terminal only.
-- **Claude doesn't run these scripts.** `.claude/settings.json` blocks it from running them or reading the Keychain. That's a guardrail; the real protection is that you run them yourself.
 
 ## One-time setup
 
