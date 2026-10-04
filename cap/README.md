@@ -49,4 +49,3 @@ For weather, click the weather readout in the top bar and type your city once (e
 - **On-device voice only.** CAP speaks with your Mac's built-in voices, never an online voice that would send the text to a server. Spoken summaries never include amounts or bank names.
 - **Only research and weather leave your Mac, by design.** Your research prompt is sent to OpenAlex (and to Claude if an Anthropic API key is set). For weather, only the city you type and its coordinates go to Open-Meteo (no account or key); CAP never uses your device's location. Nothing else CAP shows is sent anywhere.
 - **Separate browser profile.** The app window uses its own Chrome profile (`~/Library/Application Support/CAP/chrome`), so extensions in your normal browser can't read the page.
-- **Claude doesn't run it.** `.claude/settings.json` blocks Claude Code from starting `cap.py`, because that would let it trigger the balance check. `demo.py` is allowed because it only uses fake data.
