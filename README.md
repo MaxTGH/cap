@@ -54,9 +54,8 @@ The dashboard can trigger a live bank-balance check, so its designed around what
 
 <p align="center"><img src="docs/locked.png" alt="A window not opened by CAP shows as Locked" width="860"><br><em>Any window that wasn't opened by CAP itself is locked.</em></p>
 
-These protections are covered by [automated tests](cap/test_server.py) that start a real server and attack it over HTTP.
-
 ## Tests
+The above mitigations are covered by [automated tests](cap/test_server.py) that start a real server and attack it over HTTP.
 
 ```bash
 (cd cap && uv run python -m unittest test_server -v)                          # server security and behavior (9 tests)
