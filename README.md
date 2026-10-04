@@ -36,7 +36,7 @@ On a Mac with Chrome it opens as its own app window; anywhere else it opens in y
 
 ## Security and privacy design
 
-The dashboard can trigger a live bank-balance check, so I designed it around what could go wrong:
+The dashboard can trigger a live bank-balance check, so its designed around what could go wrong:
 
 | Threat | Mitigation |
 |---|---|
