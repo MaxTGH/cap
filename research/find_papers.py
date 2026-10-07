@@ -215,12 +215,14 @@ def find_papers(problem: str, since_year: int, per_query: int, top_k: int, citat
         matched_queries=df["matched_queries"].map(lambda q: "; ".join(sorted(q)))
     ).to_csv(out)
 
+    # pandas turns a missing value into NaN, which isn't valid JSON for a browser (CAP); send null instead.
+    text = lambda v: None if pd.isna(v) else v
     top = [{
         "title": p["title"],
-        "url": p["url"],
+        "url": text(p["url"]),
         "year": None if pd.isna(p["year"]) else int(p["year"]),
-        "venue": p["venue"],
-        "first_author": p["first_author"],
+        "venue": text(p["venue"]),
+        "first_author": text(p["first_author"]),
         "citations": int(p["citations"]),
         "kind": p["kind"],
         "similarity": round(float(p["similarity"]), 3),

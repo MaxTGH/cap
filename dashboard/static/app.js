@@ -49,8 +49,9 @@ function bar(fraction, tone) {
 
 async function api(path, options = {}) {
   const res = await fetch(path, { ...options, headers: { "X-CAP-Token": TOKEN, "Content-Type": "application/json" } });
-  const body = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error(body.error || `HTTP ${res.status}`);
+  const body = await res.json().catch(() => null);
+  if (!res.ok) throw new Error(body?.error || `HTTP ${res.status}`);
+  if (!body) throw new Error("CAP sent a reply the page couldn't read.");
   return body;
 }
 

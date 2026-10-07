@@ -118,7 +118,8 @@ class CAP:
         # Scripts print one line of JSON last. Exit code 1 can still carry a result (balance FAIL).
         last = next((l for l in reversed(stdout) if l.strip()), "")
         try:
-            job.result, job.status = json.loads(last), "done"
+            # NaN/Infinity are valid to Python but break JSON.parse in the browser: pass them on as null.
+            job.result, job.status = json.loads(last, parse_constant=lambda _: None), "done"
         except json.JSONDecodeError:
             if timed_out.is_set():
                 job.error = f"Stopped after {task.timeout // 60} minutes without finishing."
