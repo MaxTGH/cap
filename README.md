@@ -10,7 +10,7 @@ You need Python 3.12+ and [uv](https://docs.astral.sh/uv/). Demo mode uses made-
 
 ```bash
 git clone https://github.com/MaxTGH/cap.git
-cd cap/cap
+cd cap/dashboard
 uv run demo.py
 ```
 
@@ -55,10 +55,10 @@ The dashboard can trigger a live bank-balance check, so its designed around what
 <p align="center"><img src="docs/locked.png" alt="A window not opened by CAP shows as Locked" width="860"><br><em>Any window that wasn't opened by CAP itself is locked.</em></p>
 
 ## Tests
-The above mitigations are covered by [automated tests](cap/test_server.py) that start a real server and attack it over HTTP.
+The above mitigations are covered by [automated tests](dashboard/test_server.py) that start a real server and attack it over HTTP.
 
 ```bash
-(cd cap && uv run python -m unittest test_server -v)                          # server security and behavior (9 tests)
+(cd dashboard && uv run python -m unittest test_server -v)                    # server security and behavior (9 tests)
 (cd balance-check && uv run python -m unittest discover -s test_scripts -v)   # balance rule and subscription detection (15 tests)
 ```
 
@@ -67,7 +67,7 @@ All tests use made-up data and never touch Plaid, Gmail or the Keychain.
 ## Repository layout
 
 ```
-cap/             dashboard: server, launcher, demo, weather, UI (static/)
+dashboard/       CAP itself: server, launcher, demo, weather, UI (static/)
 balance-check/   Plaid balance guardrail and subscription detector
 research/        paper finder (CLI + notebook)
 docs/            screenshots (demo data)
@@ -77,10 +77,10 @@ For the Mail triage panel in live mode, clone [email_classifier](https://github.
 
 ## Running it for real
 
-Live mode needs macOS (for the Keychain) and each module's own setup. See [balance-check](balance-check/README.md) (Plaid keys and bank linking), [research](research/README.md) and [cap](cap/README.md). Then:
+Live mode needs macOS (for the Keychain) and each module's own setup. See [balance-check](balance-check/README.md) (Plaid keys and bank linking), [research](research/README.md) and [dashboard](dashboard/README.md). Then:
 
 ```bash
-cd cap && uv run cap.py
+cd dashboard && uv run cap.py
 ```
 
 ## Tech stack
